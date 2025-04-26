@@ -216,7 +216,7 @@ const RentModal = () => {
                     label="Title"
                     disabled={isLoading}
                     register={register}
-                    errors={erros}
+                    errors={errors}
                     required
                 />
                 <hr/>
@@ -225,7 +225,7 @@ const RentModal = () => {
                     label="Description"
                     disabled={isLoading}
                     register={register}
-                    errors={erros}
+                    errors={errors}
                     required
                 />
             </div>
@@ -246,7 +246,7 @@ const RentModal = () => {
                     type="number"
                     disabled={isLoading}
                     register={register}
-                    errors={erros}
+                    errors={errors}
                     required
                 />
             </div>

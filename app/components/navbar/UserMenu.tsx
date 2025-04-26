@@ -9,6 +9,7 @@ import useLoginModal from "@/app/hooks/useLoginModal";
 import { signOut } from "next-auth/react";
 import { SafeUser } from "@/app/types";
 import useRentModal from "@/app/hooks/useRentModal";
+import { useRouter } from "next/navigation";
 
 interface UserMenuProps {
     currentUser?: SafeUser | null
@@ -19,6 +20,7 @@ const UserMenu: React.FC<UserMenuProps> = ({
     const registerModal = useRegisterModal()
     const loginModal = useLoginModal()
     const rentModal = useRentModal()
+    const router = useRouter()
     const [isOpen, setIsOpen] = useState(false)
     
     const toggleOpen = useCallback(() => {
@@ -58,18 +60,42 @@ const UserMenu: React.FC<UserMenuProps> = ({
                         {currentUser 
                             ? (
                                 <>
-                                <MenuItem onClick={() => {}} label="My trips"></MenuItem>
-                                <MenuItem onClick={() => {}} label="My favorites"></MenuItem>
-                                <MenuItem onClick={() => {}} label="My reservations"></MenuItem>
-                                <MenuItem onClick={() => {}} label="My properties"></MenuItem>
-                                <MenuItem onClick={rentModal.onOpen} label="Airbnb my home"></MenuItem>
+                                <MenuItem 
+                                    onClick={() => router.push("/trips")} 
+                                    label="My trips"
+                                />
+                                <MenuItem 
+                                    onClick={() => router.push("/favorites")} 
+                                    label="My favorites"
+                                    />
+                                <MenuItem 
+                                    onClick={() => router.push("/reservations")} 
+                                    label="My reservations"
+                                />
+                                <MenuItem 
+                                    onClick={() => router.push("/properties")} 
+                                    label="My properties"
+                                />
+                                <MenuItem 
+                                    onClick={rentModal.onOpen} 
+                                    label="Airbnb my home"
+                                />
                                 <hr/>
-                                <MenuItem onClick={() => signOut()} label="Logout"></MenuItem>
+                                <MenuItem 
+                                    onClick={() => signOut()} 
+                                    label="Logout"
+                                />
                                 </>) 
                             : (
                                 <>
-                                <MenuItem onClick={loginModal.onOpen} label="Login"></MenuItem>
-                                <MenuItem onClick={registerModal.onOpen} label="Sign up"></MenuItem>
+                                <MenuItem 
+                                    onClick={loginModal.onOpen} 
+                                    label="Login"
+                                />
+                                <MenuItem 
+                                    onClick={registerModal.onOpen} 
+                                    label="Sign up"
+                                />
                                 </>)
                         }
                     </div>
